@@ -77,3 +77,10 @@ export const DDS_CARDS_WITHOUT_IMAGES =
  */
 export const DDS_USECASES =
   process.env.DDS_USECASES === 'true' || DDS_FLAGS_ALL || false;
+/**
+ * This determines if the featuredlink will be rendered or not
+ *
+ * @type {string | boolean}
+ */
+export const DDS_FEATURED_LINK =
+  process.env.DDS_FEATURED_LINK === 'true' || DDS_FLAGS_ALL || false;
