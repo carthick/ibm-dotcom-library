@@ -61,11 +61,13 @@ const FeaturedLink = ({ title, content, image }) => {
             <a href={content.link.href} target={content.link.target}>
               <div className={`${prefix}--featuredlink__content`}>
                 {image && (
-                  <FeaturedLinkImage
-                    images={sortImages(image)}
-                    defaultImage={image.default}
-                    alt={image.alt}
-                  />
+                  <div className={`${prefix}--featuredlink__image-container`}>
+                    <FeaturedLinkImage
+                      images={sortImages(image)}
+                      defaultImage={image.default}
+                      alt={image.alt}
+                    />
+                  </div>
                 )}
                 <FeaturedLinkItem
                   title={content.title}

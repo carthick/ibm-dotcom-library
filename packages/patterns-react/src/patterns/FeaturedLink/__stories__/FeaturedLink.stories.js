@@ -30,9 +30,9 @@ if (DDS_FEATURED_LINK) {
       };
 
       const images = {
-        mobile: 'https://picsum.photos/id/2/320/370',
-        tablet: 'https://picsum.photos/id/2/672/400',
-        default: 'https://picsum.photos/id/2/672/400',
+        mobile: 'https://picsum.photos/id/2/320/320',
+        tablet: 'https://picsum.photos/id/2/400/400',
+        default: 'https://picsum.photos/id/2/672/672',
         alt: 'lead space image',
       };
 
