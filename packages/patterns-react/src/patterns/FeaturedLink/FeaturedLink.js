@@ -6,7 +6,7 @@
  */
 
 import PropTypes from 'prop-types';
-import React, { useEffect } from 'react';
+import React from 'react';
 import { settings as ddsSettings } from '@carbon/ibmdotcom-utilities';
 import { settings } from 'carbon-components';
 import { featureFlag } from '@carbon/ibmdotcom-utilities';
@@ -49,62 +49,37 @@ const sortImages = images => {
  * @returns {*} FeaturedLink JSX component
  */
 const FeaturedLink = ({ title, content, image }) => {
-  console.log(typeof image);
-  useEffect(() => {
-    let biggest = 0;
-    const links = Array.prototype.slice.call(
-      document.querySelectorAll(
-        `[data-autoid=${stablePrefix}--featuredlink-item]`
-      )
-    );
-    links.forEach(link => {
-      if (link.offsetHeight > biggest) {
-        biggest = link.offsetHeight;
-      }
-    });
-  });
-
   return featureFlag(
     DDS_FEATURED_LINK,
     <section
       className={`${prefix}--featuredlink`}
       data-autoid={`${stablePrefix}--featuredlink`}>
       <div className={`${prefix}--featuredlink__container`}>
-        <div className={`${prefix}--featuredlink__col`}>
-          <h3 className={`${prefix}--featuredlink__title`}>{title}</h3>
-        </div>
         <div className={`${prefix}--featuredlink__row`}>
           <div className={`${prefix}--featuredlink__col`}>
-            {image && (
-              <FeaturedLinkImage
-                images={sortImages(image)}
-                defaultImage={image.default}
-                alt={image.alt}
-              />
-            )}
+            <h3 className={`${prefix}--featuredlink__title`}>{title}</h3>
+            <a href={content.link.href} target={content.link.target}>
+              <div className={`${prefix}--featuredlink__content`}>
+                {image && (
+                  <FeaturedLinkImage
+                    images={sortImages(image)}
+                    defaultImage={image.default}
+                    alt={image.alt}
+                  />
+                )}
+                <FeaturedLinkItem
+                  title={content.title}
+                  copy={content.copy}
+                  link={content.link}
+                />
+              </div>
+            </a>
           </div>
-          <div className={`${prefix}--featuredlink__row`}>
-            {_renderFeaturedLinkItems(content)}
-          </div>
-        </div>
-        <div className={`${prefix}--featuredlink__divider__col`}>
-          <div className={`${prefix}--featuredlink__divider`}></div>
         </div>
       </div>
     </section>
   );
 };
-
-/**
- * Renders the cards based on the ContentArray entries
- *
- * @param {Array} contentArray Content object array
- * @returns {*} CardArrayItem JSX objects
- */
-const _renderFeaturedLinkItems = contentArray =>
-  contentArray.map(elem => (
-    <FeaturedLinkItem title={elem.title} copy={elem.copy} link={elem.link} />
-  ));
 
 FeaturedLink.propTypes = {
   title: PropTypes.string.isRequired,

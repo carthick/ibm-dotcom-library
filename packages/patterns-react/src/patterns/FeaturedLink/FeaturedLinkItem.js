@@ -20,17 +20,15 @@ const { prefix } = settings;
  *
  * @param {object} props props object
  * @param {string} props.title Card Title
- * @param {string} props.copy Card copy
  * @param {object} props.link Card link object
  * @returns {*} JSX Featured Link Item Object
  */
-const FeaturedLinkItem = ({ title, copy, link }) => {
+const FeaturedLinkItem = ({ title, link }) => {
   return (
     <div
       data-autoid={`${stablePrefix}--featuredlink-item`}
       className={`${prefix}--featuredlink-item`}>
       <h4 className={`${prefix}--featuredlink-item__title`}>{title}</h4>
-      <h2 className={`${prefix}--featuredlink-item__content`}>{copy}</h2>
       <div className={`${prefix}--featuredlink-item__link`}>
         <Button
           className={`${prefix}--featuredlink-item__link__button`}
@@ -46,7 +44,6 @@ const FeaturedLinkItem = ({ title, copy, link }) => {
 
 FeaturedLinkItem.propTypes = {
   title: PropTypes.string,
-  copy: PropTypes.string,
   link: PropTypes.shape({
     href: PropTypes.string,
     target: PropTypes.string,
